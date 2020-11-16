@@ -192,7 +192,7 @@ this._prepareDebugger = function (global) {
     require('script/debugger/transport.js', "debug");
     require('script/debugger/actors/root.js', "debug");
     require('script/debugger/actors/script.js', "debug");
-    require('script/debugger/main.js', "debug");
+    require('script/debugger/game.js', "debug");
 
     promise = exports;
     //DebuggerServer.addTestGlobal = function(aGlobal) {

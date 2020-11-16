@@ -127,7 +127,7 @@ def copy_resources(app_android_root):
     os.mkdir(assets_jsb_dir);
 
 
-    shutil.copy(os.path.join(app_android_root, "../../../main.js"), assets_dir)
+    shutil.copy(os.path.join(app_android_root, "../../../game.js"), assets_dir)
     shutil.copy(os.path.join(app_android_root, "../../../project.json"), assets_dir)
 
     resources_dir = os.path.join(app_android_root, "../../../res")

@@ -41,7 +41,7 @@
     </_CustomResource>
   </ItemGroup>
   <ItemGroup>
-    <_CustomResource Include="..\..\..\..\main.js">
+    <_CustomResource Include="..\..\..\..\game.js">
       <Link>Assets\Resources\%(RecursiveDir)%(FileName)%(Extension)</Link>
       <DeploymentContent>true</DeploymentContent>
     </_CustomResource>

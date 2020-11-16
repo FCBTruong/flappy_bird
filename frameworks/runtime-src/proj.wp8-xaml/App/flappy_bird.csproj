@@ -138,7 +138,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\..\..\main.js">
+    <Content Include="..\..\..\..\game.js">
       <Link>Assets\Resources\%(RecursiveDir)%(FileName)%(Extension)</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

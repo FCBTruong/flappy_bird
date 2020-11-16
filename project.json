@@ -11,7 +11,9 @@
     "modules" : ["cocos2d"],
 
     "jsList" : [
-        "src/resource.js",
-        "src/app.js"
+        "src/Game.vars.js",
+        "src/Game.resources.js",
+        "src/Game.layers.js",
+        "src/Game.scenes.js"
     ]
 }

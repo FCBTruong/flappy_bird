@@ -880,7 +880,7 @@ cocos2d-x-3.0alpha1 Nov.19 2013
      [FIX]          sys.localStorage: doesn't support non-ascii string
      [FIX]          BuilderReader: can't play sequence  automatically
      [FIX]          Wrong conversion to javal in cccolor4f_to_jsval and cccolor3b_to_jsval
-     [NEW]          main.js -> cocos2d-jsb.js
+     [NEW]          game.js -> cocos2d-jsb.js
      [NEW]          Remote debugging using Firefox, "step into" can not work
      [NEW]          Added binding for Node::setScale(float, float)
      [NEW]          Impvoved armature binding
