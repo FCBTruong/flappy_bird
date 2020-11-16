@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="94b562b3-54af-43df-be4b-abd2f4905764" name="Default" comment="" />
+    <list default="true" id="94b562b3-54af-43df-be4b-abd2f4905764" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/favicon.ico" afterPath="$PROJECT_DIR$/res/favicon.ico" />
+    </list>
     <ignored path="flappy_bird.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -63,6 +65,9 @@
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -431,12 +436,12 @@
       <updated>1605503412621</updated>
       <workItem from="1605503415238" duration="819000" />
       <workItem from="1605504265174" duration="75000" />
-      <workItem from="1605504481308" duration="818000" />
+      <workItem from="1605504481308" duration="1421000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1712000" />
+    <option name="totallyTimeSpent" value="2315000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
