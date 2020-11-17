@@ -324,7 +324,7 @@
 
             </sources>
             <sources dir="${basedir}">
-                <file name="src/Game.resources.js"/>
+                <file name="src/Resources.js"/>
 
                 <file name="src/game-manager.js"/>
 
