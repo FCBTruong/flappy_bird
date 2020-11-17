@@ -45,7 +45,7 @@ var GameLayer = cc.Layer.extend({
     },
 
     initPines: function () {
-        var xPos = 0;
+        var xPos = 300;
         for (var i = 0; i < MAX_PIPES; i++) {
             var pipe = new Pipe();
             xPos = xPos + DISTANCE_OF_TWO_PIPES;
@@ -79,6 +79,11 @@ var GameLayer = cc.Layer.extend({
     },
     moveBird: function () {
         this._bird.move();
+        cc.log('xx' + this._bird.y);
+    },
+
+    checkCollisions: function(){
+
     },
 
     listener: cc.EventListener.create(
