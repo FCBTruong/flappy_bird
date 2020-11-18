@@ -18,6 +18,9 @@ var GameLayer = cc.Layer.extend({
     scoreBoard: null,
 
     ctor: function () {
+        this._listPipes = [],
+        this.isPlaying = false;
+        this.gameOverStatus = false;
         game = this;
         this._super();
         var background = cc.Sprite.create(res.BackGround_png);
@@ -45,11 +48,14 @@ var GameLayer = cc.Layer.extend({
         this.scoreBoard.setScale(1.2);
         this.addChild(this.scoreBoard, 2);
     },
+
     update: function (dt) {
-        if(!this.isPlaying) return;
+        if (!this.isPlaying) return;
         this.movePipes();
         this.moveBird();
         this.checkCollisions();
+
+        if (this._bird.y < 0) this.gameOver();
     },
 
     initPines: function () {
@@ -70,7 +76,7 @@ var GameLayer = cc.Layer.extend({
     movePipes: function () {
         for (var i = 0; i < MAX_PIPES; i++) {
             MovementController.move(this._listPipes[i], -this._speed, "horizontal");
-            if(!this._listPipes[i].isPassed) {
+            if (!this._listPipes[i].isPassed) {
                 if (this._listPipes[i].x < this._bird.x) {
                     this.scoreBoard.increase();
                     cc.log(this.scoreBoard.size);
@@ -99,32 +105,33 @@ var GameLayer = cc.Layer.extend({
         this._bird.move();
     },
 
-    checkCollisions: function(){
-        for(var i = 0; i < MAX_PIPES; i ++){
-            if(this._listPipes[i].checkBird(this._bird.getRect())) {
+    checkCollisions: function () {
+        for (var i = 0; i < MAX_PIPES; i++) {
+            if (this._listPipes[i].checkBird(this._bird.getRect())) {
                 this.gameOver();
             }
         }
     },
 
-    gameOver: function(){
+    gameOver: function () {
+        this.scoreBoard.removeFromParent(true);
         this.gameOverStatus = true;
         this.isPlaying = false;
         this._bird.stopRotate();
-        this.addChild(new GameOver(this.scoreBoard.score));
+        this.addChild(new GameOver(), 2);
         this.scoreBoard.setVisible(false);
     },
 
     listener: cc.EventListener.create(
         {
-        event: cc.EventListener.TOUCH_ONE_BY_ONE, swallowTouches: true,
-        onTouchBegan: function (touch, event) {
-            if(!game.gameOverStatus) {
-                if (!game.isPlaying) game.isPlaying = true;
-                game._bird.fly();
+            event: cc.EventListener.TOUCH_ONE_BY_ONE, swallowTouches: true,
+            onTouchBegan: function (touch, event) {
+                if (!game.gameOverStatus) {
+                    if (!game.isPlaying) game.isPlaying = true;
+                    game._bird.fly();
+                }
             }
-        }
-    })
+        })
 });
 
 var GameScene = cc.Scene.extend({

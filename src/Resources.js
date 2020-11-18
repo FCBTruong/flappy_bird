@@ -7,7 +7,8 @@ res = {
     Pipe_green_png: "res/sprites/pipe-green.png",
     Fade_png: "res/sprites/fade.png",
     GameOverTitle_png: "res/sprites/gameover.png",
-    Box_png: "res/sprites/box.png"
+    Box_png: "res/sprites/box.png",
+    Restart_png: "res/sprites/restart_button.png"
 };
 
 numbers = {
@@ -23,8 +24,15 @@ numbers = {
     Number9_png: "res/sprites/9.png",
 };
 
+birdsAnim = {
+    Bird0_png: "res/sprites/yellowbird-downflap.png",
+    Bird1_png: "res/sprites/yellowbird-midflap.png",
+    Bird2_png: "res/sprites/yellowbird-upflap.png"
+};
+
 var g_resources = [];
 var number_resources = [];
+var bird_anims = [];
 
 for (var i in res) {
     g_resources.push(res[i]);
@@ -32,4 +40,8 @@ for (var i in res) {
 
 for (var j in numbers){
     number_resources.push(numbers[j]);
+}
+
+for (var k in birdsAnim) {
+    bird_anims.push(birdsAnim[k]);
 }

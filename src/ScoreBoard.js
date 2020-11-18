@@ -10,6 +10,7 @@ var ScoreBoard = cc.Sprite.extend({
     size: 0,
 
     ctor: function () {
+        this.numberDisplayLists = [];
         this.score = 0;
         this._super();
         this.initNumbers();
