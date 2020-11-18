@@ -12,6 +12,8 @@
 
     "jsList" : [
         "src/Resources.js",
+        "src/GameOver.js",
+        "src/ScoreBoard.js",
         "src/MovementController.js",
         "src/Bird.js",
         "src/Pipe.js",

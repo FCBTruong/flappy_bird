@@ -10,10 +10,12 @@ var game;
 
 var GameLayer = cc.Layer.extend({
     isPlaying: false,
+    gameOverStatus: false,
     _listPipes: [],
     _bird: null,
     _speed: 1,
     _widthPipe: 100,
+    scoreBoard: null,
 
     ctor: function () {
         game = this;
@@ -37,11 +39,17 @@ var GameLayer = cc.Layer.extend({
 
         this.initPines();
         cc.eventManager.addListener(this.listener.clone(), this);
+
+        this.scoreBoard = new ScoreBoard();
+        this.scoreBoard.setPosition(cc.winSize.width / 2, 350);
+        this.scoreBoard.setScale(1.2);
+        this.addChild(this.scoreBoard, 2);
     },
     update: function (dt) {
         if(!this.isPlaying) return;
         this.movePipes();
         this.moveBird();
+        this.checkCollisions();
     },
 
     initPines: function () {
@@ -62,6 +70,15 @@ var GameLayer = cc.Layer.extend({
     movePipes: function () {
         for (var i = 0; i < MAX_PIPES; i++) {
             MovementController.move(this._listPipes[i], -this._speed, "horizontal");
+            if(!this._listPipes[i].isPassed) {
+                if (this._listPipes[i].x < this._bird.x) {
+                    this.scoreBoard.increase();
+                    cc.log(this.scoreBoard.size);
+                    this.scoreBoard.setPosition(cc.winSize.width/2 + this.scoreBoard.size / 2,
+                    this.scoreBoard.y);
+                    this._listPipes[i].isPassed = true;
+                }
+            }
         }
 
         var firstPosX = this._listPipes[0].x + this._widthPipe / 2;
@@ -72,6 +89,7 @@ var GameLayer = cc.Layer.extend({
             if (negative == 0) negative = -1;
             var yPos = Math.floor(Math.random() * RANDOM_RANGE) * negative;
             firstPipe.y = yPos;
+            firstPipe.isPassed = false;
             firstPipe.setPosition(firstPipe);
             this._listPipes.shift();
             this._listPipes.push(firstPipe);
@@ -79,20 +97,32 @@ var GameLayer = cc.Layer.extend({
     },
     moveBird: function () {
         this._bird.move();
-        cc.log('xx' + this._bird.y);
     },
 
     checkCollisions: function(){
+        for(var i = 0; i < MAX_PIPES; i ++){
+            if(this._listPipes[i].checkBird(this._bird.getRect())) {
+                this.gameOver();
+            }
+        }
+    },
 
+    gameOver: function(){
+        this.gameOverStatus = true;
+        this.isPlaying = false;
+        this._bird.stopRotate();
+        this.addChild(new GameOver(this.scoreBoard.score));
+        this.scoreBoard.setVisible(false);
     },
 
     listener: cc.EventListener.create(
         {
         event: cc.EventListener.TOUCH_ONE_BY_ONE, swallowTouches: true,
         onTouchBegan: function (touch, event) {
-            cc.log('press');
-            if(!game.isPlaying) game.isPlaying = true;
-            game._bird.fly();
+            if(!game.gameOverStatus) {
+                if (!game.isPlaying) game.isPlaying = true;
+                game._bird.fly();
+            }
         }
     })
 });
